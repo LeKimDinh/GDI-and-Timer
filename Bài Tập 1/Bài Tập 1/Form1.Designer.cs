@@ -29,120 +29,94 @@
         private void InitializeComponent()
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button16 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnDuongThang = new System.Windows.Forms.Button();
+            this.pnlMain = new System.Windows.Forms.Panel();
+            this.btnKhungHCN = new System.Windows.Forms.Button();
+            this.btnHCN = new System.Windows.Forms.Button();
+            this.btnKhungEllipse = new System.Windows.Forms.Button();
+            this.btnEllipse = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.button16);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Controls.Add(this.button3);
-            this.flowLayoutPanel1.Controls.Add(this.button4);
-            this.flowLayoutPanel1.Controls.Add(this.button5);
-            this.flowLayoutPanel1.Controls.Add(this.button6);
-            this.flowLayoutPanel1.Controls.Add(this.button7);
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel1.Controls.Add(this.btnDuongThang);
+            this.flowLayoutPanel1.Controls.Add(this.btnKhungHCN);
+            this.flowLayoutPanel1.Controls.Add(this.btnHCN);
+            this.flowLayoutPanel1.Controls.Add(this.btnKhungEllipse);
+            this.flowLayoutPanel1.Controls.Add(this.btnEllipse);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(158, 450);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // button16
+            // btnDuongThang
             // 
-            this.button16.Location = new System.Drawing.Point(3, 3);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(149, 49);
-            this.button16.TabIndex = 15;
-            this.button16.Text = "button16";
-            this.button16.UseVisualStyleBackColor = true;
+            this.btnDuongThang.Location = new System.Drawing.Point(3, 3);
+            this.btnDuongThang.Name = "btnDuongThang";
+            this.btnDuongThang.Size = new System.Drawing.Size(149, 49);
+            this.btnDuongThang.TabIndex = 15;
+            this.btnDuongThang.Text = "Đường Thẳng";
+            this.btnDuongThang.UseVisualStyleBackColor = true;
+            this.btnDuongThang.Click += new System.EventHandler(this.btnDuongThang_Click);
             // 
-            // panel1
+            // pnlMain
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(158, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(642, 450);
-            this.panel1.TabIndex = 1;
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.Location = new System.Drawing.Point(158, 0);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(642, 450);
+            this.pnlMain.TabIndex = 1;
+            this.pnlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseDown);
             // 
-            // button1
+            // btnKhungHCN
             // 
-            this.button1.Location = new System.Drawing.Point(3, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 49);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnKhungHCN.Location = new System.Drawing.Point(3, 58);
+            this.btnKhungHCN.Name = "btnKhungHCN";
+            this.btnKhungHCN.Size = new System.Drawing.Size(149, 49);
+            this.btnKhungHCN.TabIndex = 16;
+            this.btnKhungHCN.Text = "Khung Hình Chũ Nhật";
+            this.btnKhungHCN.UseVisualStyleBackColor = true;
+            this.btnKhungHCN.Click += new System.EventHandler(this.btnKhungHCN_Click);
             // 
-            // button2
+            // btnHCN
             // 
-            this.button2.Location = new System.Drawing.Point(3, 113);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(149, 49);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnHCN.Location = new System.Drawing.Point(3, 113);
+            this.btnHCN.Name = "btnHCN";
+            this.btnHCN.Size = new System.Drawing.Size(149, 49);
+            this.btnHCN.TabIndex = 17;
+            this.btnHCN.Text = "Hình Chữ Nhật";
+            this.btnHCN.UseVisualStyleBackColor = true;
+            this.btnHCN.Click += new System.EventHandler(this.btnHCN_Click);
             // 
-            // button3
+            // btnKhungEllipse
             // 
-            this.button3.Location = new System.Drawing.Point(3, 168);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(149, 49);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnKhungEllipse.Location = new System.Drawing.Point(3, 168);
+            this.btnKhungEllipse.Name = "btnKhungEllipse";
+            this.btnKhungEllipse.Size = new System.Drawing.Size(149, 49);
+            this.btnKhungEllipse.TabIndex = 18;
+            this.btnKhungEllipse.Text = "Khung hình Ellipse";
+            this.btnKhungEllipse.UseVisualStyleBackColor = true;
+            this.btnKhungEllipse.Click += new System.EventHandler(this.btnKhungEllipse_Click);
             // 
-            // button4
+            // btnEllipse
             // 
-            this.button4.Location = new System.Drawing.Point(3, 223);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(149, 49);
-            this.button4.TabIndex = 19;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(3, 278);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(149, 49);
-            this.button5.TabIndex = 20;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(3, 333);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(149, 49);
-            this.button6.TabIndex = 21;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(3, 388);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(149, 49);
-            this.button7.TabIndex = 22;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnEllipse.Location = new System.Drawing.Point(3, 223);
+            this.btnEllipse.Name = "btnEllipse";
+            this.btnEllipse.Size = new System.Drawing.Size(149, 49);
+            this.btnEllipse.TabIndex = 19;
+            this.btnEllipse.Text = "Hình Ellipse";
+            this.btnEllipse.UseVisualStyleBackColor = true;
+            this.btnEllipse.Click += new System.EventHandler(this.btnEllipse_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -154,15 +128,12 @@
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnDuongThang;
+        private System.Windows.Forms.Button btnKhungHCN;
+        private System.Windows.Forms.Button btnHCN;
+        private System.Windows.Forms.Button btnKhungEllipse;
+        private System.Windows.Forms.Button btnEllipse;
+        private System.Windows.Forms.Panel pnlMain;
     }
 }
 
