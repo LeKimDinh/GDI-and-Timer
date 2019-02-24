@@ -41,9 +41,10 @@
             // pnlMain
             // 
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(158, 0);
+            this.pnlMain.Location = new System.Drawing.Point(236, 0);
+            this.pnlMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(642, 450);
+            this.pnlMain.Size = new System.Drawing.Size(964, 692);
             this.pnlMain.TabIndex = 3;
             this.pnlMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMain_Paint);
             this.pnlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseDown);
@@ -52,39 +53,47 @@
             // 
             // btnKhungHCN
             // 
-            this.btnKhungHCN.Location = new System.Drawing.Point(3, 58);
+            this.btnKhungHCN.Location = new System.Drawing.Point(4, 90);
+            this.btnKhungHCN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnKhungHCN.Name = "btnKhungHCN";
-            this.btnKhungHCN.Size = new System.Drawing.Size(149, 49);
+            this.btnKhungHCN.Size = new System.Drawing.Size(224, 75);
             this.btnKhungHCN.TabIndex = 16;
             this.btnKhungHCN.Text = "Khung Hình Chũ Nhật";
             this.btnKhungHCN.UseVisualStyleBackColor = true;
+            this.btnKhungHCN.Click += new System.EventHandler(this.btnKhungHCN_Click);
             // 
             // btnHCN
             // 
-            this.btnHCN.Location = new System.Drawing.Point(3, 113);
+            this.btnHCN.Location = new System.Drawing.Point(4, 175);
+            this.btnHCN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnHCN.Name = "btnHCN";
-            this.btnHCN.Size = new System.Drawing.Size(149, 49);
+            this.btnHCN.Size = new System.Drawing.Size(224, 75);
             this.btnHCN.TabIndex = 17;
             this.btnHCN.Text = "Hình Chữ Nhật";
             this.btnHCN.UseVisualStyleBackColor = true;
+            this.btnHCN.Click += new System.EventHandler(this.btnHCN_Click);
             // 
             // btnKhungEllipse
             // 
-            this.btnKhungEllipse.Location = new System.Drawing.Point(3, 168);
+            this.btnKhungEllipse.Location = new System.Drawing.Point(4, 260);
+            this.btnKhungEllipse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnKhungEllipse.Name = "btnKhungEllipse";
-            this.btnKhungEllipse.Size = new System.Drawing.Size(149, 49);
+            this.btnKhungEllipse.Size = new System.Drawing.Size(224, 75);
             this.btnKhungEllipse.TabIndex = 18;
             this.btnKhungEllipse.Text = "Khung hình Ellipse";
             this.btnKhungEllipse.UseVisualStyleBackColor = true;
+            this.btnKhungEllipse.Click += new System.EventHandler(this.btnKhungEllipse_Click);
             // 
             // btnEllipse
             // 
-            this.btnEllipse.Location = new System.Drawing.Point(3, 223);
+            this.btnEllipse.Location = new System.Drawing.Point(4, 345);
+            this.btnEllipse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEllipse.Name = "btnEllipse";
-            this.btnEllipse.Size = new System.Drawing.Size(149, 49);
+            this.btnEllipse.Size = new System.Drawing.Size(224, 75);
             this.btnEllipse.TabIndex = 19;
             this.btnEllipse.Text = "Hình Ellipse";
             this.btnEllipse.UseVisualStyleBackColor = true;
+            this.btnEllipse.Click += new System.EventHandler(this.btnEllipse_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -96,15 +105,17 @@
             this.flowLayoutPanel1.Controls.Add(this.btnEllipse);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(158, 450);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(236, 692);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // btnDuongThang
             // 
-            this.btnDuongThang.Location = new System.Drawing.Point(3, 3);
+            this.btnDuongThang.Location = new System.Drawing.Point(4, 5);
+            this.btnDuongThang.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDuongThang.Name = "btnDuongThang";
-            this.btnDuongThang.Size = new System.Drawing.Size(149, 49);
+            this.btnDuongThang.Size = new System.Drawing.Size(224, 75);
             this.btnDuongThang.TabIndex = 15;
             this.btnDuongThang.Text = "Đường Thẳng";
             this.btnDuongThang.UseVisualStyleBackColor = true;
@@ -112,11 +123,12 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

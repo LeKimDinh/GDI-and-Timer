@@ -13,10 +13,15 @@ namespace Bài_Tập_2
     public partial class Form1 : Form
     {
         Graphics gp;
-        bool bLine = false;
 
-        Pen myPen;
-        Color myColor;
+        bool bLine = false;
+        bool bKhungEllipse = false;
+        bool bEllipse = false;
+        bool bHCN = false;
+        bool bKhungHCN = false;
+
+        //Pen myPen;
+        //Color myColor;
 
         bool isStart = false;   //Cờ xác định đi vẽ
 
@@ -25,10 +30,7 @@ namespace Bài_Tập_2
         public Form1()
         {
             InitializeComponent();
-
             gp = this.pnlMain.CreateGraphics();
-            myColor = Color.Blue;
-            myPen = new Pen(myColor);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -38,14 +40,49 @@ namespace Bài_Tập_2
 
         private void pnlMain_MouseDown(object sender, MouseEventArgs e)
         {
-            this.isStart = true;        //bắt đầu vẽ
-
-            if (bLine == true)
+            //Kiểm tra xem hiện tại người dùng chọn kiểu hình để vẽ
+            if (bLine == true || bKhungEllipse == true || bKhungHCN == true || bHCN == true || bEllipse == true)
             {
+                this.isStart = true;        //bắt đầu vẽ
+                //Khi nhấn chuột cập nhật 1 hình vẽ
                 cLine myLine = new cLine();
                 myLine.p1 = e.Location;
                 myLine.p2 = e.Location;
+                ChonKieuHinh(myLine);
                 this.lLine.Add(myLine);
+            }
+        }
+
+        private void ChonKieuHinh(cLine myLine)
+        {
+            if (bLine == true)
+            {
+                myLine.kieuhinh = KieuHinh.Line;
+            }
+            else
+            {
+                if (bKhungHCN == true)
+                {
+                    myLine.kieuhinh = KieuHinh.KHCN;
+                }
+                else
+                {
+                    if (bHCN == true)
+                    {
+                        myLine.kieuhinh = KieuHinh.HCN;
+                    }
+                    else
+                    {
+                        if (bKhungEllipse == true)
+                        {
+                            myLine.kieuhinh = KieuHinh.Kellipse;
+                        }
+                        else
+                        {
+                            myLine.kieuhinh = KieuHinh.Ellipse;
+                        }
+                    }
+                }
             }
         }
 
@@ -53,12 +90,11 @@ namespace Bài_Tập_2
         {
             if (this.isStart == true)
             {
-                if (this.bLine == true)
+                if (bLine == true || bKhungEllipse == true || bKhungHCN == true || bHCN == true || bEllipse == true)
                 {
                     //Cập nhật lại vị trí con chuột hiện tại
-                    this.lLine[this.lLine.Count - 1].p2 = e.Location;
-                    this.pnlMain.Refresh(); //Làm tười màn hình
-                    //Xóa sách màn hình và gọi hàm Paint
+                    this.lLine[lLine.Count - 1].p2 = e.Location;
+                    this.pnlMain.Refresh(); //Làm tươi màn hình
                 }
             }
         }
@@ -69,8 +105,41 @@ namespace Bài_Tập_2
             {
                 for (int i = 0; i < this.lLine.Count; i++)
                 {
-                    gp.DrawLine(myPen, lLine[i].p1, lLine[i].p2);
+                    Draw(lLine[i]);
                 }
+            }
+        }
+
+        public void Draw(cLine myCline)
+        {
+            switch (myCline.kieuhinh)
+            {
+                case KieuHinh.Line:
+                    gp.DrawLine(myCline.myPen, myCline.p1, myCline.p2);
+                    break;
+                case KieuHinh.HCN:
+                    Point p = new Point();
+                    if (myCline.p1.X < myCline.p2.X && myCline.p1.Y < myCline.p2.Y)
+                    {
+                        p = myCline.p1;
+                    }
+                    else
+                    {
+                        if (myCline.p1.X > myCline.p2.X && myCline.p1.Y > myCline.p2.Y)
+                        {
+                            p = myCline.p2;
+                        }
+                        else
+                        {
+                           
+                        }
+                    }
+                    Rectangle retangle = new Rectangle(p, new Size(Math.Abs(myCline.p1.X - myCline.p2.X), Math.Abs(myCline.p1.Y - myCline.p2.Y)));
+                    gp.DrawRectangle(myCline.myPen, retangle);
+
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -85,16 +154,77 @@ namespace Bài_Tập_2
             this.bLine = false;
         }
 
+        #region Events for button
+
         private void btnDuongThang_Click(object sender, EventArgs e)
         {
             bLine = true;
+            bKhungEllipse = false;
+            bEllipse = false;
+            bHCN = false;
+            bKhungHCN = false;
         }
+
+        private void btnKhungHCN_Click(object sender, EventArgs e)
+        {
+            bKhungHCN = true;
+            bLine = false;
+            bKhungEllipse = false;
+            bEllipse = false;
+            bHCN = false;
+        }
+
+        private void btnHCN_Click(object sender, EventArgs e)
+        {
+            bHCN = true;
+            bLine = false;
+            bKhungEllipse = false;
+            bEllipse = false;
+            bKhungHCN = false;
+        }
+
+        private void btnKhungEllipse_Click(object sender, EventArgs e)
+        {
+            bKhungEllipse = true;
+            bLine = false;
+            bEllipse = false;
+            bHCN = false;
+            bKhungHCN = false;
+        }
+
+        private void btnEllipse_Click(object sender, EventArgs e)
+        {
+            bEllipse = true;
+            bLine = false;
+            bKhungEllipse = false;
+            bHCN = false;
+            bKhungHCN = false;
+        }
+
+        #endregion
     }
 
     public class cLine
     {
         public Point p1;
         public Point p2;
-       
+
+        public Color mausac;
+        public Pen myPen;
+
+        public int doday;
+        public KieuHinh kieuhinh;
+
+        public cLine()
+        {
+            mausac = Color.Blue;
+            doday = 4;
+            myPen = new Pen(mausac, doday);
+        }
+    }
+
+    public enum KieuHinh
+    {
+        Line, HCN, KHCN, Ellipse, Kellipse
     }
 }
