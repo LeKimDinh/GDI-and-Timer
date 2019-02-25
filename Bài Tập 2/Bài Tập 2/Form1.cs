@@ -110,6 +110,36 @@ namespace Bài_Tập_2
             }
         }
 
+        public Rectangle TaoHCN(cLine myCline)
+        {
+            Point p = new Point();
+            if (myCline.p1.X < myCline.p2.X && myCline.p1.Y < myCline.p2.Y)
+            {
+                p = myCline.p1;
+            }
+            else
+            {
+                if (myCline.p1.X > myCline.p2.X && myCline.p1.Y > myCline.p2.Y)
+                {
+                    p = myCline.p2;
+                }
+                else
+                {
+                    if (myCline.p1.X > myCline.p2.X && myCline.p1.Y < myCline.p2.Y)
+                    {
+                        p.X = myCline.p2.X;
+                        p.Y = myCline.p1.Y;
+                    }
+                    else
+                    {
+                        p.X = myCline.p1.X;
+                        p.Y = myCline.p2.Y;
+                    }
+                }
+            }
+            return new Rectangle(p, new Size(Math.Abs(myCline.p1.X - myCline.p2.X), Math.Abs(myCline.p1.Y - myCline.p2.Y)));
+        }
+
         public void Draw(cLine myCline)
         {
             switch (myCline.kieuhinh)
@@ -118,25 +148,16 @@ namespace Bài_Tập_2
                     gp.DrawLine(myCline.myPen, myCline.p1, myCline.p2);
                     break;
                 case KieuHinh.HCN:
-                    Point p = new Point();
-                    if (myCline.p1.X < myCline.p2.X && myCline.p1.Y < myCline.p2.Y)
-                    {
-                        p = myCline.p1;
-                    }
-                    else
-                    {
-                        if (myCline.p1.X > myCline.p2.X && myCline.p1.Y > myCline.p2.Y)
-                        {
-                            p = myCline.p2;
-                        }
-                        else
-                        {
-                           
-                        }
-                    }
-                    Rectangle retangle = new Rectangle(p, new Size(Math.Abs(myCline.p1.X - myCline.p2.X), Math.Abs(myCline.p1.Y - myCline.p2.Y)));
-                    gp.DrawRectangle(myCline.myPen, retangle);
-
+                    gp.DrawRectangle(myCline.myPen, TaoHCN(myCline));
+                    break;
+                case KieuHinh.KHCN:
+                    gp.FillRectangle(myCline.sBrush, TaoHCN(myCline));
+                    break;
+                case KieuHinh.Ellipse:
+                    gp.DrawEllipse(myCline.myPen, TaoHCN(myCline));
+                    break;
+                case KieuHinh.Kellipse:
+                    gp.FillEllipse(myCline.sBrush, TaoHCN(myCline));
                     break;
                 default:
                     break;
@@ -151,7 +172,7 @@ namespace Bài_Tập_2
                 this.pnlMain.Refresh();
             }
             this.isStart = false;
-            this.bLine = false;
+            //this.bLine = false;
         }
 
         #region Events for button
@@ -210,6 +231,7 @@ namespace Bài_Tập_2
         public Point p2;
 
         public Color mausac;
+        public SolidBrush sBrush;
         public Pen myPen;
 
         public int doday;
@@ -220,6 +242,7 @@ namespace Bài_Tập_2
             mausac = Color.Blue;
             doday = 4;
             myPen = new Pen(mausac, doday);
+            sBrush = new SolidBrush(mausac);
         }
     }
 
