@@ -14,6 +14,8 @@ namespace Bài_Tập_Paint
     {
         Graphics gp;
 
+        System.Drawing.Drawing2D.DashStyle dashStyle;
+
         bool bLine = false;
         bool bFEllipse = false;
         bool bEllipse = false;
@@ -28,6 +30,11 @@ namespace Bài_Tập_Paint
             InitializeComponent();
             gp = pnlMain.CreateGraphics();
             DoubleBuffered = true;
+
+            cbKieuVe.SelectedIndex = 0;
+
+            btnColorPen.BackColor = colorDialog1.Color;
+            btnColorBrush.BackColor = colorDialog1.Color;
         }
 
         #region Events for button
@@ -81,54 +88,77 @@ namespace Bài_Tập_Paint
         {
             isPress = true;
 
-            if (bLine == true)
+            try
             {
-                clsDrawObject myObj = new clsLine();
-                myObj.p1 = e.Location;
-                myObj.p2 = e.Location;
-
-                lstObject.Add(myObj);
-            }
-            else
-            {
-                if (bRectangle == true)
+                if (bLine == true)
                 {
-                    clsDrawObject myObj = new clsRectangle();
+                    clsDrawObject myObj = new clsLine();
                     myObj.p1 = e.Location;
                     myObj.p2 = e.Location;
 
+                    myObj.myPen.Width = float.Parse(txtDoDay.Text);
+                    myObj.myPen.DashStyle = dashStyle;
+
+                    myObj.myPen.Color = colorDialog1.Color;
                     lstObject.Add(myObj);
                 }
                 else
                 {
-                    if (bFRectangle == true)
+                    if (bRectangle == true)
                     {
-                        clsDrawObject myObj = new clsFRectangle();
+                        clsDrawObject myObj = new clsRectangle();
                         myObj.p1 = e.Location;
                         myObj.p2 = e.Location;
 
+                        myObj.myPen.Width = float.Parse(txtDoDay.Text);
+                        myObj.myPen.DashStyle = dashStyle;
+
+                        myObj.myPen.Color = colorDialog1.Color;
                         lstObject.Add(myObj);
                     }
                     else
                     {
-                        if (bEllipse == true)
+                        if (bFRectangle == true)
                         {
-                            clsDrawObject myObj = new clsEllipse();
+                            clsDrawObject myObj = new clsFRectangle();
                             myObj.p1 = e.Location;
                             myObj.p2 = e.Location;
-
+                            myObj.sBrush.Color = colorDialog2.Color;
                             lstObject.Add(myObj);
                         }
                         else
                         {
+                            if (bEllipse == true)
+                            {
+                                clsDrawObject myObj = new clsEllipse();
+                                myObj.p1 = e.Location;
+                                myObj.p2 = e.Location;
 
-                            clsDrawObject myObj = new clsFEllipse();
-                            myObj.p1 = e.Location;
-                            myObj.p2 = e.Location;
-                            lstObject.Add(myObj);
+                                myObj.myPen.Width = float.Parse(txtDoDay.Text);
+                                myObj.myPen.DashStyle = dashStyle;
+
+                                myObj.myPen.Color = colorDialog1.Color;
+                                lstObject.Add(myObj);
+                            }
+                            else
+                            {
+                                if (bFEllipse == true)
+                                {
+                                    clsDrawObject myObj = new clsFEllipse();
+                                    myObj.p1 = e.Location;
+                                    myObj.p2 = e.Location;
+                                    myObj.sBrush.Color = colorDialog2.Color;
+                                    lstObject.Add(myObj);
+                                }
+                            }
                         }
                     }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Độ dày không hợp lệ.", "Thông báo");
+                isPress = false;
             }
         }
 
@@ -136,8 +166,11 @@ namespace Bài_Tập_Paint
         {
             if (isPress == true)
             {
-                this.lstObject[lstObject.Count - 1].p2 = e.Location;
-                pnlMain.Refresh();
+                if (lstObject.Count > 0)
+                {
+                    this.lstObject[lstObject.Count - 1].p2 = e.Location;
+                    pnlMain.Refresh();
+                }
             }
         }
 
@@ -145,10 +178,12 @@ namespace Bài_Tập_Paint
         {
             if (isPress == true)
             {
-                this.lstObject[lstObject.Count - 1].p2 = e.Location;
-                pnlMain.Refresh();
+                if (lstObject.Count > 0)
+                {
+                    this.lstObject[lstObject.Count - 1].p2 = e.Location;
+                    pnlMain.Refresh();
+                }
             }
-
             isPress = false;
         }
 
@@ -157,6 +192,43 @@ namespace Bài_Tập_Paint
             foreach (var i in lstObject)
             {
                 i.Draw(gp);
+            }
+        }
+
+        private void btnColorPen_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            btnColorPen.BackColor = colorDialog1.Color;
+        }
+
+        private void btnColorBrush_Click(object sender, EventArgs e)
+        {
+            colorDialog2.ShowDialog();
+            btnColorBrush.BackColor = colorDialog2.Color;
+        }
+
+        private void cbKieuVe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cbKieuVe.SelectedIndex)
+            {
+                case 0:
+                    dashStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+                    break;
+                case 1:
+                    dashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    break;
+                case 2:
+                    dashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+                    break;
+                case 3:
+                    dashStyle = System.Drawing.Drawing2D.DashStyle.DashDotDot;
+                    break;
+                case 4:
+                    dashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+                    break;
+                case 5:
+                    dashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+                    break;
             }
         }
     }
@@ -170,14 +242,15 @@ namespace Bài_Tập_Paint
         public SolidBrush sBrush;
         public Pen myPen;
 
-        public int doday;
+        public float doday;
 
         public clsDrawObject()
         {
-            mausac = Color.Blue;
+            mausac = Color.Black;
             doday = 4;
             myPen = new Pen(mausac, doday);
             sBrush = new SolidBrush(mausac);
+         
         }
 
         protected Rectangle CreateRectangle()

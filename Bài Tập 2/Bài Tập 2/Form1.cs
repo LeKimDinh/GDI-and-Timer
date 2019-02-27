@@ -31,6 +31,8 @@ namespace Bài_Tập_2
         {
             InitializeComponent();
             gp = this.pnlMain.CreateGraphics();
+
+            DoubleBuffered = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -101,6 +103,7 @@ namespace Bài_Tập_2
 
         private void pnlMain_Paint(object sender, PaintEventArgs e)
         {
+
             if (this.isStart == true)
             {
                 for (int i = 0; i < this.lLine.Count; i++)
@@ -108,6 +111,7 @@ namespace Bài_Tập_2
                     Draw(lLine[i]);
                 }
             }
+
         }
 
         public Rectangle TaoHCN(cLine myCline)
