@@ -21,6 +21,8 @@ namespace Bài_Tập_Paint
         bool bEllipse = false;
         bool bRectangle = false;
         bool bFRectangle = false;
+        bool bArc = false;
+        bool bSquare = false;
 
         bool isPress = false;
         List<clsDrawObject> lstObject = new List<clsDrawObject>();
@@ -45,6 +47,8 @@ namespace Bài_Tập_Paint
             bEllipse = false;
             bRectangle = false;
             bFRectangle = false;
+            bArc = false;
+            bSquare = false;
         }
 
         private void btnKhungHCN_Click(object sender, EventArgs e)
@@ -54,6 +58,8 @@ namespace Bài_Tập_Paint
             bFEllipse = false;
             bEllipse = false;
             bRectangle = false;
+            bArc = false;
+            bSquare = false;
         }
 
         private void btnHCN_Click(object sender, EventArgs e)
@@ -63,6 +69,8 @@ namespace Bài_Tập_Paint
             bFEllipse = false;
             bEllipse = false;
             bFRectangle = false;
+            bArc = false;
+            bSquare = false;
         }
 
         private void btnKhungEllipse_Click(object sender, EventArgs e)
@@ -72,6 +80,8 @@ namespace Bài_Tập_Paint
             bEllipse = false;
             bRectangle = false;
             bFRectangle = false;
+            bArc = false;
+            bSquare = false;
         }
 
         private void btnEllipse_Click(object sender, EventArgs e)
@@ -81,6 +91,30 @@ namespace Bài_Tập_Paint
             bFEllipse = false;
             bRectangle = false;
             bFRectangle = false;
+            bArc = false;
+            bSquare = false;
+        }
+
+        private void btnArc_Click(object sender, EventArgs e)
+        {
+            bArc = true;
+            bEllipse = false;
+            bLine = false;
+            bFEllipse = false;
+            bRectangle = false;
+            bFRectangle = false;
+            bSquare = false;
+        }
+
+        private void btnSquare_Click(object sender, EventArgs e)
+        {
+            bArc = false;
+            bEllipse = false;
+            bLine = false;
+            bFEllipse = false;
+            bRectangle = false;
+            bFRectangle = false;
+            bSquare = true;
         }
         #endregion
 
@@ -93,13 +127,13 @@ namespace Bài_Tập_Paint
                 if (bLine == true)
                 {
                     clsDrawObject myObj = new clsLine();
-                    myObj.p1 = e.Location;
-                    myObj.p2 = e.Location;
+                    myObj.P1 = e.Location;
+                    myObj.P2 = e.Location;
 
-                    myObj.myPen.Width = float.Parse(txtDoDay.Text);
-                    myObj.myPen.DashStyle = dashStyle;
+                    myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
+                    myObj.MyPen.DashStyle = dashStyle;
 
-                    myObj.myPen.Color = colorDialog1.Color;
+
                     lstObject.Add(myObj);
                 }
                 else
@@ -107,13 +141,12 @@ namespace Bài_Tập_Paint
                     if (bRectangle == true)
                     {
                         clsDrawObject myObj = new clsRectangle();
-                        myObj.p1 = e.Location;
-                        myObj.p2 = e.Location;
+                        myObj.P1 = e.Location;
+                        myObj.P2 = e.Location;
 
-                        myObj.myPen.Width = float.Parse(txtDoDay.Text);
-                        myObj.myPen.DashStyle = dashStyle;
+                        myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
+                        myObj.MyPen.DashStyle = dashStyle;
 
-                        myObj.myPen.Color = colorDialog1.Color;
                         lstObject.Add(myObj);
                     }
                     else
@@ -121,9 +154,9 @@ namespace Bài_Tập_Paint
                         if (bFRectangle == true)
                         {
                             clsDrawObject myObj = new clsFRectangle();
-                            myObj.p1 = e.Location;
-                            myObj.p2 = e.Location;
-                            myObj.sBrush.Color = colorDialog2.Color;
+                            myObj.P1 = e.Location;
+                            myObj.P2 = e.Location;
+                            myObj.SBrush = new SolidBrush(colorDialog2.Color);
                             lstObject.Add(myObj);
                         }
                         else
@@ -131,13 +164,12 @@ namespace Bài_Tập_Paint
                             if (bEllipse == true)
                             {
                                 clsDrawObject myObj = new clsEllipse();
-                                myObj.p1 = e.Location;
-                                myObj.p2 = e.Location;
+                                myObj.P1 = e.Location;
+                                myObj.P2 = e.Location;
 
-                                myObj.myPen.Width = float.Parse(txtDoDay.Text);
-                                myObj.myPen.DashStyle = dashStyle;
+                                myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
+                                myObj.MyPen.DashStyle = dashStyle;
 
-                                myObj.myPen.Color = colorDialog1.Color;
                                 lstObject.Add(myObj);
                             }
                             else
@@ -145,10 +177,38 @@ namespace Bài_Tập_Paint
                                 if (bFEllipse == true)
                                 {
                                     clsDrawObject myObj = new clsFEllipse();
-                                    myObj.p1 = e.Location;
-                                    myObj.p2 = e.Location;
-                                    myObj.sBrush.Color = colorDialog2.Color;
+                                    myObj.P1 = e.Location;
+                                    myObj.P2 = e.Location;
+                                    myObj.SBrush = new SolidBrush(colorDialog2.Color);
                                     lstObject.Add(myObj);
+                                }
+                                else
+                                {
+                                    if (bArc == true)
+                                    {
+                                        clsDrawObject myObj = new clsArc();
+                                        myObj.P1 = e.Location;
+                                        myObj.P2 = e.Location;
+
+                                        myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
+                                        myObj.MyPen.DashStyle = dashStyle;
+
+                                        lstObject.Add(myObj);
+                                    }
+                                    else
+                                    {
+                                        if (bSquare == true)
+                                        {
+                                            clsDrawObject myObj = new clsSquare();
+                                            myObj.P1 = e.Location;
+                                            myObj.P2 = e.Location;
+
+                                            myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
+                                            myObj.MyPen.DashStyle = dashStyle;
+
+                                            lstObject.Add(myObj);
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -168,7 +228,7 @@ namespace Bài_Tập_Paint
             {
                 if (lstObject.Count > 0)
                 {
-                    this.lstObject[lstObject.Count - 1].p2 = e.Location;
+                    this.lstObject[lstObject.Count - 1].P2 = e.Location;
                     pnlMain.Refresh();
                 }
             }
@@ -180,7 +240,7 @@ namespace Bài_Tập_Paint
             {
                 if (lstObject.Count > 0)
                 {
-                    this.lstObject[lstObject.Count - 1].p2 = e.Location;
+                    this.lstObject[lstObject.Count - 1].P2 = e.Location;
                     pnlMain.Refresh();
                 }
             }
@@ -235,52 +295,57 @@ namespace Bài_Tập_Paint
 
     public abstract class clsDrawObject
     {
-        public Point p1;
-        public Point p2;
+        private Point p1;
+        private Point p2;
+        private Color mausac;
+        private SolidBrush sBrush;
+        private Pen myPen;
+        private float doday;
 
-        public Color mausac;
-        public SolidBrush sBrush;
-        public Pen myPen;
-
-        public float doday;
+        public Point P1 { get => p1; set => p1 = value; }
+        public Point P2 { get => p2; set => p2 = value; }
+        public Color Mausac { get => mausac; set => mausac = value; }
+        public SolidBrush SBrush { get => sBrush; set => sBrush = value; }
+        public Pen MyPen { get => myPen; set => myPen = value; }
+        public float Doday { get => doday; set => doday = value; }
 
         public clsDrawObject()
         {
-            mausac = Color.Black;
-            doday = 4;
-            myPen = new Pen(mausac, doday);
-            sBrush = new SolidBrush(mausac);
-         
+            //mausac = Color.Black;
+            //doday = 4;
+            //myPen = new Pen(mausac, doday);
+            //sBrush = new SolidBrush(mausac);
+
         }
 
         protected Rectangle CreateRectangle()
         {
             Point p = new Point();
-            if (this.p1.X < this.p2.X && this.p1.Y < this.p2.Y)
+            if (this.P1.X < this.P2.X && this.P1.Y < this.P2.Y)
             {
-                p = this.p1;
+                p = this.P1;
             }
             else
             {
-                if (this.p1.X > this.p2.X && this.p1.Y > this.p2.Y)
+                if (this.P1.X > this.P2.X && this.P1.Y > this.P2.Y)
                 {
-                    p = this.p2;
+                    p = this.P2;
                 }
                 else
                 {
-                    if (this.p1.X > this.p2.X && this.p1.Y < this.p2.Y)
+                    if (this.P1.X > this.P2.X && this.P1.Y < this.P2.Y)
                     {
-                        p.X = this.p2.X;
-                        p.Y = this.p1.Y;
+                        p.X = this.P2.X;
+                        p.Y = this.P1.Y;
                     }
                     else
                     {
-                        p.X = this.p1.X;
-                        p.Y = this.p2.Y;
+                        p.X = this.P1.X;
+                        p.Y = this.P2.Y;
                     }
                 }
             }
-            return new Rectangle(p, new Size(Math.Abs(this.p1.X - this.p2.X), Math.Abs(this.p1.Y - this.p2.Y)));
+            return new Rectangle(p, new Size(Math.Abs(this.P1.X - this.P2.X), Math.Abs(this.P1.Y - this.P2.Y)));
         }
 
         public abstract void Draw(Graphics g);
@@ -290,7 +355,7 @@ namespace Bài_Tập_Paint
     {
         public override void Draw(Graphics g)
         {
-            g.DrawLine(this.myPen, this.p1, this.p2);
+            g.DrawLine(this.MyPen, this.P1, this.P2);
         }
     }
 
@@ -298,7 +363,7 @@ namespace Bài_Tập_Paint
     {
         public override void Draw(Graphics g)
         {
-            g.DrawRectangle(this.myPen, CreateRectangle());
+            g.DrawRectangle(this.MyPen, CreateRectangle());
         }
     }
 
@@ -306,7 +371,7 @@ namespace Bài_Tập_Paint
     {
         public override void Draw(Graphics g)
         {
-            g.FillRectangle(this.sBrush, CreateRectangle());
+            g.FillRectangle(this.SBrush, CreateRectangle());
         }
     }
 
@@ -314,7 +379,7 @@ namespace Bài_Tập_Paint
     {
         public override void Draw(Graphics g)
         {
-            g.DrawEllipse(this.myPen, CreateRectangle());
+            g.DrawEllipse(this.MyPen, CreateRectangle());
         }
     }
 
@@ -322,11 +387,49 @@ namespace Bài_Tập_Paint
     {
         public override void Draw(Graphics g)
         {
-            g.FillEllipse(this.sBrush, CreateRectangle());
+            g.FillEllipse(this.SBrush, CreateRectangle());
         }
     }
 
+    public class clsArc : clsDrawObject
+    {
+        public override void Draw(Graphics g)
+        {
+            //Chưa xong
+            g.DrawArc(this.MyPen, CreateRectangle(), 45.0F, 270.0F);
+        }
+    }
 
-
-
+    public class clsSquare : clsDrawObject
+    {
+        public override void Draw(Graphics g)
+        {
+            Point p = new Point();
+            if (this.P1.X < this.P2.X && this.P1.Y < this.P2.Y)
+            {
+                p = this.P1;
+            }
+            else
+            {
+                if (this.P1.X > this.P2.X && this.P1.Y > this.P2.Y)
+                {
+                    p = this.P2;
+                }
+                else
+                {
+                    if (this.P1.X > this.P2.X && this.P1.Y < this.P2.Y)
+                    {
+                        p.X = this.P2.X;
+                        p.Y = this.P1.Y;
+                    }
+                    else
+                    {
+                        p.X = this.P1.X;
+                        p.Y = this.P2.Y;
+                    }
+                }
+            }
+            
+        }
+    }
 }
