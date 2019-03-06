@@ -20,6 +20,7 @@ namespace Bài_Tập_Paint
 
         bool isPress = false;
         bool canMove = false;
+        bool isDeleting = false;
 
         List<clsDrawObject> lstObject = new List<clsDrawObject>();
         int posSelected = -1;
@@ -208,9 +209,17 @@ namespace Bài_Tập_Paint
         {
             if (e.KeyCode == Keys.Delete)
             {
-                if (canMove == true)
+                if (posSelected >= 0 && posSelected < lstObject.Count)
                 {
+                    isDeleting = true;
+
                     lstObject.RemoveAt(posSelected);
+
+                    pnlMain.Refresh();
+
+                    posSelected = -1;
+
+                    isDeleting = false;
                 }
             }
         }
@@ -273,12 +282,14 @@ namespace Bài_Tập_Paint
 
         private void pnlMain_Paint(object sender, PaintEventArgs e)
         {
-            if (isPress == true || canMove == true)
+            if (isPress == true || canMove == true || isDeleting == true)
             {
                 foreach (var i in lstObject)
                 {
                     i.Draw(gp);
                 }
+
+                pnlMain.Focus();
             }
 
         }
