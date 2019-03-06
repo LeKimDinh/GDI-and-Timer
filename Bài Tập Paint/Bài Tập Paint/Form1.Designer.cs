@@ -31,6 +31,7 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSquare = new System.Windows.Forms.Button();
             this.btnArc = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -51,7 +52,6 @@
             this.btnKhungEllipse = new System.Windows.Forms.Button();
             this.btnEllipse = new System.Windows.Forms.Button();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
-            this.btnSquare = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,9 +66,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlMain.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.pnlMain.Location = new System.Drawing.Point(161, -1);
+            this.pnlMain.Location = new System.Drawing.Point(242, -2);
+            this.pnlMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(729, 517);
+            this.pnlMain.Size = new System.Drawing.Size(1092, 794);
             this.pnlMain.TabIndex = 5;
             this.pnlMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMain_Paint);
             this.pnlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseDown);
@@ -99,16 +100,27 @@
             this.panel1.Controls.Add(this.btnEllipse);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(159, 517);
+            this.panel1.Size = new System.Drawing.Size(238, 795);
             this.panel1.TabIndex = 7;
+            // 
+            // btnSquare
+            // 
+            this.btnSquare.Location = new System.Drawing.Point(9, 715);
+            this.btnSquare.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSquare.Name = "btnSquare";
+            this.btnSquare.Size = new System.Drawing.Size(92, 75);
+            this.btnSquare.TabIndex = 44;
+            this.btnSquare.Text = "Hình vuông";
+            this.btnSquare.UseVisualStyleBackColor = true;
+            this.btnSquare.Click += new System.EventHandler(this.btnSquare_Click);
             // 
             // btnArc
             // 
-            this.btnArc.Location = new System.Drawing.Point(85, 401);
+            this.btnArc.Location = new System.Drawing.Point(128, 617);
+            this.btnArc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnArc.Name = "btnArc";
-            this.btnArc.Size = new System.Drawing.Size(61, 49);
+            this.btnArc.Size = new System.Drawing.Size(92, 75);
             this.btnArc.TabIndex = 43;
             this.btnArc.Text = "Đường cong";
             this.btnArc.UseVisualStyleBackColor = true;
@@ -116,10 +128,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 162);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(9, 249);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 18);
+            this.button1.Size = new System.Drawing.Size(224, 28);
             this.button1.TabIndex = 42;
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -127,19 +138,17 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 214);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox1.Location = new System.Drawing.Point(9, 329);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(151, 21);
+            this.comboBox1.Size = new System.Drawing.Size(224, 28);
             this.comboBox1.TabIndex = 41;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 195);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(14, 300);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 13);
+            this.label6.Size = new System.Drawing.Size(107, 20);
             this.label6.TabIndex = 40;
             this.label6.Text = "Kiểu đường tô";
             this.label6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -147,10 +156,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 148);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(14, 228);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.Size = new System.Drawing.Size(107, 20);
             this.label5.TabIndex = 38;
             this.label5.Text = "Màu đường tô";
             this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -166,20 +174,18 @@
             "DashDotDot",
             "Dot",
             "Solid"});
-            this.cbKieuVe.Location = new System.Drawing.Point(63, 86);
-            this.cbKieuVe.Margin = new System.Windows.Forms.Padding(2);
+            this.cbKieuVe.Location = new System.Drawing.Point(94, 132);
             this.cbKieuVe.Name = "cbKieuVe";
-            this.cbKieuVe.Size = new System.Drawing.Size(95, 21);
+            this.cbKieuVe.Size = new System.Drawing.Size(140, 28);
             this.cbKieuVe.TabIndex = 37;
             this.cbKieuVe.SelectedIndexChanged += new System.EventHandler(this.cbKieuVe_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 88);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(12, 135);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.Size = new System.Drawing.Size(60, 20);
             this.label4.TabIndex = 36;
             this.label4.Text = "Kiểu vẽ";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -187,20 +193,18 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 242);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(10, 372);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.Size = new System.Drawing.Size(60, 20);
             this.label3.TabIndex = 35;
             this.label3.Text = "Kiểu vẽ";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // btnColorBrush
             // 
-            this.btnColorBrush.Location = new System.Drawing.Point(6, 124);
-            this.btnColorBrush.Margin = new System.Windows.Forms.Padding(2);
+            this.btnColorBrush.Location = new System.Drawing.Point(9, 191);
             this.btnColorBrush.Name = "btnColorBrush";
-            this.btnColorBrush.Size = new System.Drawing.Size(149, 18);
+            this.btnColorBrush.Size = new System.Drawing.Size(224, 28);
             this.btnColorBrush.TabIndex = 34;
             this.btnColorBrush.UseVisualStyleBackColor = true;
             this.btnColorBrush.Click += new System.EventHandler(this.btnColorBrush_Click);
@@ -208,10 +212,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 109);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(9, 168);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.Size = new System.Drawing.Size(89, 20);
             this.label2.TabIndex = 33;
             this.label2.Text = "Màu nền tô";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -219,10 +222,9 @@
             // lbDoDay
             // 
             this.lbDoDay.AutoSize = true;
-            this.lbDoDay.Location = new System.Drawing.Point(6, 4);
-            this.lbDoDay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbDoDay.Location = new System.Drawing.Point(9, 6);
             this.lbDoDay.Name = "lbDoDay";
-            this.lbDoDay.Size = new System.Drawing.Size(44, 13);
+            this.lbDoDay.Size = new System.Drawing.Size(63, 20);
             this.lbDoDay.TabIndex = 31;
             this.lbDoDay.Text = "Độ dày:\r\n";
             this.lbDoDay.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -230,10 +232,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 44);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(9, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 32;
             this.label1.Text = "Màu sắc bút:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -241,28 +242,27 @@
             // txtDoDay
             // 
             this.txtDoDay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDoDay.Location = new System.Drawing.Point(6, 19);
-            this.txtDoDay.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDoDay.Location = new System.Drawing.Point(9, 29);
             this.txtDoDay.Name = "txtDoDay";
-            this.txtDoDay.Size = new System.Drawing.Size(150, 20);
+            this.txtDoDay.Size = new System.Drawing.Size(224, 26);
             this.txtDoDay.TabIndex = 29;
             this.txtDoDay.Text = "4";
             // 
             // btnColorPen
             // 
-            this.btnColorPen.Location = new System.Drawing.Point(6, 60);
-            this.btnColorPen.Margin = new System.Windows.Forms.Padding(2);
+            this.btnColorPen.Location = new System.Drawing.Point(9, 92);
             this.btnColorPen.Name = "btnColorPen";
-            this.btnColorPen.Size = new System.Drawing.Size(149, 18);
+            this.btnColorPen.Size = new System.Drawing.Size(224, 28);
             this.btnColorPen.TabIndex = 30;
             this.btnColorPen.UseVisualStyleBackColor = true;
             this.btnColorPen.Click += new System.EventHandler(this.btnColorPen_Click);
             // 
             // btnDuongThang
             // 
-            this.btnDuongThang.Location = new System.Drawing.Point(6, 266);
+            this.btnDuongThang.Location = new System.Drawing.Point(9, 409);
+            this.btnDuongThang.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDuongThang.Name = "btnDuongThang";
-            this.btnDuongThang.Size = new System.Drawing.Size(61, 55);
+            this.btnDuongThang.Size = new System.Drawing.Size(92, 85);
             this.btnDuongThang.TabIndex = 24;
             this.btnDuongThang.Text = "Đường Thẳng";
             this.btnDuongThang.UseVisualStyleBackColor = true;
@@ -270,9 +270,10 @@
             // 
             // btnKhungHCN
             // 
-            this.btnKhungHCN.Location = new System.Drawing.Point(85, 266);
+            this.btnKhungHCN.Location = new System.Drawing.Point(128, 409);
+            this.btnKhungHCN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnKhungHCN.Name = "btnKhungHCN";
-            this.btnKhungHCN.Size = new System.Drawing.Size(61, 55);
+            this.btnKhungHCN.Size = new System.Drawing.Size(92, 85);
             this.btnKhungHCN.TabIndex = 25;
             this.btnKhungHCN.Text = "Hình Chũ Nhật";
             this.btnKhungHCN.UseVisualStyleBackColor = true;
@@ -280,9 +281,10 @@
             // 
             // btnHCN
             // 
-            this.btnHCN.Location = new System.Drawing.Point(85, 335);
+            this.btnHCN.Location = new System.Drawing.Point(128, 515);
+            this.btnHCN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnHCN.Name = "btnHCN";
-            this.btnHCN.Size = new System.Drawing.Size(61, 49);
+            this.btnHCN.Size = new System.Drawing.Size(92, 75);
             this.btnHCN.TabIndex = 26;
             this.btnHCN.Text = "Khung Hình Chữ Nhật";
             this.btnHCN.UseVisualStyleBackColor = true;
@@ -290,9 +292,10 @@
             // 
             // btnKhungEllipse
             // 
-            this.btnKhungEllipse.Location = new System.Drawing.Point(9, 335);
+            this.btnKhungEllipse.Location = new System.Drawing.Point(14, 515);
+            this.btnKhungEllipse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnKhungEllipse.Name = "btnKhungEllipse";
-            this.btnKhungEllipse.Size = new System.Drawing.Size(61, 49);
+            this.btnKhungEllipse.Size = new System.Drawing.Size(92, 75);
             this.btnKhungEllipse.TabIndex = 27;
             this.btnKhungEllipse.Text = "Hình Ellipse";
             this.btnKhungEllipse.UseVisualStyleBackColor = true;
@@ -300,9 +303,10 @@
             // 
             // btnEllipse
             // 
-            this.btnEllipse.Location = new System.Drawing.Point(9, 401);
+            this.btnEllipse.Location = new System.Drawing.Point(14, 617);
+            this.btnEllipse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEllipse.Name = "btnEllipse";
-            this.btnEllipse.Size = new System.Drawing.Size(61, 49);
+            this.btnEllipse.Size = new System.Drawing.Size(92, 75);
             this.btnEllipse.TabIndex = 28;
             this.btnEllipse.Text = "Khung hình Ellipse";
             this.btnEllipse.UseVisualStyleBackColor = true;
@@ -312,24 +316,13 @@
             // 
             this.colorDialog2.Color = System.Drawing.Color.Blue;
             // 
-            // btnSquare
-            // 
-            this.btnSquare.Location = new System.Drawing.Point(6, 465);
-            this.btnSquare.Name = "btnSquare";
-            this.btnSquare.Size = new System.Drawing.Size(61, 49);
-            this.btnSquare.TabIndex = 44;
-            this.btnSquare.Text = "Hình vuông";
-            this.btnSquare.UseVisualStyleBackColor = true;
-            this.btnSquare.Click += new System.EventHandler(this.btnSquare_Click);
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(889, 517);
+            this.ClientSize = new System.Drawing.Size(1334, 795);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlMain);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);

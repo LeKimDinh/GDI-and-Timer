@@ -16,13 +16,7 @@ namespace Bài_Tập_Paint
 
         System.Drawing.Drawing2D.DashStyle dashStyle;
 
-        bool bLine = false;
-        bool bFEllipse = false;
-        bool bEllipse = false;
-        bool bRectangle = false;
-        bool bFRectangle = false;
-        bool bArc = false;
-        bool bSquare = false;
+        FlagPaint flagStatus = FlagPaint.None;
 
         bool isPress = false;
         List<clsDrawObject> lstObject = new List<clsDrawObject>();
@@ -42,89 +36,48 @@ namespace Bài_Tập_Paint
         #region Events for button
         private void btnDuongThang_Click(object sender, EventArgs e)
         {
-            bLine = true;
-            bFEllipse = false;
-            bEllipse = false;
-            bRectangle = false;
-            bFRectangle = false;
-            bArc = false;
-            bSquare = false;
+            flagStatus = FlagPaint.Line;
         }
 
         private void btnKhungHCN_Click(object sender, EventArgs e)
         {
-            bFRectangle = true;
-            bLine = false;
-            bFEllipse = false;
-            bEllipse = false;
-            bRectangle = false;
-            bArc = false;
-            bSquare = false;
+            flagStatus = FlagPaint.Rectangle;
         }
 
         private void btnHCN_Click(object sender, EventArgs e)
         {
-            bRectangle = true;
-            bLine = false;
-            bFEllipse = false;
-            bEllipse = false;
-            bFRectangle = false;
-            bArc = false;
-            bSquare = false;
+            flagStatus = FlagPaint.FillRectangle;
         }
 
         private void btnKhungEllipse_Click(object sender, EventArgs e)
         {
-            bFEllipse = true;
-            bLine = false;
-            bEllipse = false;
-            bRectangle = false;
-            bFRectangle = false;
-            bArc = false;
-            bSquare = false;
+            flagStatus = FlagPaint.Ellipse;
         }
 
         private void btnEllipse_Click(object sender, EventArgs e)
         {
-            bEllipse = true;
-            bLine = false;
-            bFEllipse = false;
-            bRectangle = false;
-            bFRectangle = false;
-            bArc = false;
-            bSquare = false;
+            flagStatus = FlagPaint.FillEllipse;
         }
 
         private void btnArc_Click(object sender, EventArgs e)
         {
-            bArc = true;
-            bEllipse = false;
-            bLine = false;
-            bFEllipse = false;
-            bRectangle = false;
-            bFRectangle = false;
-            bSquare = false;
+            flagStatus = FlagPaint.Arc;
         }
 
         private void btnSquare_Click(object sender, EventArgs e)
         {
-            bArc = false;
-            bEllipse = false;
-            bLine = false;
-            bFEllipse = false;
-            bRectangle = false;
-            bFRectangle = false;
-            bSquare = true;
+            flagStatus = FlagPaint.Square;
         }
         #endregion
 
         private void pnlMain_MouseDown(object sender, MouseEventArgs e)
         {
+            //if (flagStatus != FlagPaint.None)
             isPress = true;
 
             try
             {
-                if (bLine == true)
+                if (flagStatus == FlagPaint.Line)
                 {
                     clsDrawObject myObj = new clsLine();
                     myObj.P1 = e.Location;
@@ -138,7 +91,7 @@ namespace Bài_Tập_Paint
                 }
                 else
                 {
-                    if (bRectangle == true)
+                    if (flagStatus == FlagPaint.Rectangle)
                     {
                         clsDrawObject myObj = new clsRectangle();
                         myObj.P1 = e.Location;
@@ -151,7 +104,7 @@ namespace Bài_Tập_Paint
                     }
                     else
                     {
-                        if (bFRectangle == true)
+                        if (flagStatus == FlagPaint.FillRectangle)
                         {
                             clsDrawObject myObj = new clsFRectangle();
                             myObj.P1 = e.Location;
@@ -161,7 +114,7 @@ namespace Bài_Tập_Paint
                         }
                         else
                         {
-                            if (bEllipse == true)
+                            if (flagStatus == FlagPaint.Ellipse)
                             {
                                 clsDrawObject myObj = new clsEllipse();
                                 myObj.P1 = e.Location;
@@ -174,7 +127,7 @@ namespace Bài_Tập_Paint
                             }
                             else
                             {
-                                if (bFEllipse == true)
+                                if (flagStatus == FlagPaint.FillEllipse)
                                 {
                                     clsDrawObject myObj = new clsFEllipse();
                                     myObj.P1 = e.Location;
@@ -184,7 +137,7 @@ namespace Bài_Tập_Paint
                                 }
                                 else
                                 {
-                                    if (bArc == true)
+                                    if (flagStatus == FlagPaint.Arc)
                                     {
                                         clsDrawObject myObj = new clsArc();
                                         myObj.P1 = e.Location;
@@ -197,7 +150,7 @@ namespace Bài_Tập_Paint
                                     }
                                     else
                                     {
-                                        if (bSquare == true)
+                                        if (flagStatus == FlagPaint.Square)
                                         {
                                             clsDrawObject myObj = new clsSquare();
                                             myObj.P1 = e.Location;
@@ -245,14 +198,19 @@ namespace Bài_Tập_Paint
                 }
             }
             isPress = false;
+            //flagStatus = FlagPaint.None;
         }
 
         private void pnlMain_Paint(object sender, PaintEventArgs e)
         {
-            foreach (var i in lstObject)
+            if (isPress == true)
             {
-                i.Draw(gp);
+                foreach (var i in lstObject)
+                {
+                    i.Draw(gp);
+                }
             }
+          
         }
 
         private void btnColorPen_Click(object sender, EventArgs e)
@@ -293,6 +251,15 @@ namespace Bài_Tập_Paint
         }
     }
 
+    /// <summary>
+    /// Cờ hiệu cho biết tình trạng loại hình đang vẽ.
+    /// </summary>
+    public enum FlagPaint
+    {
+        None, Line, FillLine, Rectangle, FillRectangle, Ellipse,
+        FillEllipse, Square, Arc
+    }
+
     public abstract class clsDrawObject
     {
         private Point p1;
@@ -302,12 +269,83 @@ namespace Bài_Tập_Paint
         private Pen myPen;
         private float doday;
 
-        public Point P1 { get => p1; set => p1 = value; }
-        public Point P2 { get => p2; set => p2 = value; }
-        public Color Mausac { get => mausac; set => mausac = value; }
-        public SolidBrush SBrush { get => sBrush; set => sBrush = value; }
-        public Pen MyPen { get => myPen; set => myPen = value; }
-        public float Doday { get => doday; set => doday = value; }
+        public Point P1
+        {
+            get
+            {
+                return p1;
+            }
+
+            set
+            {
+                p1 = value;
+            }
+        }
+
+        public Point P2
+        {
+            get
+            {
+                return p2;
+            }
+
+            set
+            {
+                p2 = value;
+            }
+        }
+
+        public Color Mausac
+        {
+            get
+            {
+                return mausac;
+            }
+
+            set
+            {
+                mausac = value;
+            }
+        }
+
+        public SolidBrush SBrush
+        {
+            get
+            {
+                return sBrush;
+            }
+
+            set
+            {
+                sBrush = value;
+            }
+        }
+
+        public Pen MyPen
+        {
+            get
+            {
+                return myPen;
+            }
+
+            set
+            {
+                myPen = value;
+            }
+        }
+
+        public float Doday
+        {
+            get
+            {
+                return doday;
+            }
+
+            set
+            {
+                doday = value;
+            }
+        }
 
         public clsDrawObject()
         {
@@ -395,8 +433,11 @@ namespace Bài_Tập_Paint
     {
         public override void Draw(Graphics g)
         {
-            //Chưa xong
-            g.DrawArc(this.MyPen, CreateRectangle(), 45.0F, 270.0F);
+            Rectangle rect = CreateRectangle();
+            rect.Width += 1;
+            rect.Height += 1;
+
+            g.DrawArc(this.MyPen, rect, 0, 180);
         }
     }
 
@@ -429,7 +470,6 @@ namespace Bài_Tập_Paint
                     }
                 }
             }
-            
         }
     }
 }
