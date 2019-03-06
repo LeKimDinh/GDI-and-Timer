@@ -19,7 +19,12 @@ namespace Bài_Tập_Paint
         FlagPaint flagStatus = FlagPaint.None;
 
         bool isPress = false;
+        bool canMove = false;
+
         List<clsDrawObject> lstObject = new List<clsDrawObject>();
+        int posSelected = -1;
+
+        Point mouseOld = new Point();
 
         public Form1()
         {
@@ -72,87 +77,75 @@ namespace Bài_Tập_Paint
 
         private void pnlMain_MouseDown(object sender, MouseEventArgs e)
         {
-            //if (flagStatus != FlagPaint.None)
-            isPress = true;
-
-            try
+            if (flagStatus != FlagPaint.None)
             {
-                if (flagStatus == FlagPaint.Line)
+                isPress = true;
+                #region  Create Object
+                try
                 {
-                    clsDrawObject myObj = new clsLine();
-                    myObj.P1 = e.Location;
-                    myObj.P2 = e.Location;
-
-                    myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
-                    myObj.MyPen.DashStyle = dashStyle;
-
-
-                    lstObject.Add(myObj);
-                }
-                else
-                {
-                    if (flagStatus == FlagPaint.Rectangle)
+                    if (flagStatus == FlagPaint.Line)
                     {
-                        clsDrawObject myObj = new clsRectangle();
+                        clsDrawObject myObj = new clsLine();
                         myObj.P1 = e.Location;
                         myObj.P2 = e.Location;
 
                         myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
                         myObj.MyPen.DashStyle = dashStyle;
 
+
                         lstObject.Add(myObj);
                     }
                     else
                     {
-                        if (flagStatus == FlagPaint.FillRectangle)
+                        if (flagStatus == FlagPaint.Rectangle)
                         {
-                            clsDrawObject myObj = new clsFRectangle();
+                            clsDrawObject myObj = new clsRectangle();
                             myObj.P1 = e.Location;
                             myObj.P2 = e.Location;
-                            myObj.SBrush = new SolidBrush(colorDialog2.Color);
+
+                            myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
+                            myObj.MyPen.DashStyle = dashStyle;
+
                             lstObject.Add(myObj);
                         }
                         else
                         {
-                            if (flagStatus == FlagPaint.Ellipse)
+                            if (flagStatus == FlagPaint.FillRectangle)
                             {
-                                clsDrawObject myObj = new clsEllipse();
+                                clsDrawObject myObj = new clsFRectangle();
                                 myObj.P1 = e.Location;
                                 myObj.P2 = e.Location;
-
-                                myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
-                                myObj.MyPen.DashStyle = dashStyle;
-
+                                myObj.SBrush = new SolidBrush(colorDialog2.Color);
                                 lstObject.Add(myObj);
                             }
                             else
                             {
-                                if (flagStatus == FlagPaint.FillEllipse)
+                                if (flagStatus == FlagPaint.Ellipse)
                                 {
-                                    clsDrawObject myObj = new clsFEllipse();
+                                    clsDrawObject myObj = new clsEllipse();
                                     myObj.P1 = e.Location;
                                     myObj.P2 = e.Location;
-                                    myObj.SBrush = new SolidBrush(colorDialog2.Color);
+
+                                    myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
+                                    myObj.MyPen.DashStyle = dashStyle;
+
                                     lstObject.Add(myObj);
                                 }
                                 else
                                 {
-                                    if (flagStatus == FlagPaint.Arc)
+                                    if (flagStatus == FlagPaint.FillEllipse)
                                     {
-                                        clsDrawObject myObj = new clsArc();
+                                        clsDrawObject myObj = new clsFEllipse();
                                         myObj.P1 = e.Location;
                                         myObj.P2 = e.Location;
-
-                                        myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
-                                        myObj.MyPen.DashStyle = dashStyle;
-
+                                        myObj.SBrush = new SolidBrush(colorDialog2.Color);
                                         lstObject.Add(myObj);
                                     }
                                     else
                                     {
-                                        if (flagStatus == FlagPaint.Square)
+                                        if (flagStatus == FlagPaint.Arc)
                                         {
-                                            clsDrawObject myObj = new clsSquare();
+                                            clsDrawObject myObj = new clsArc();
                                             myObj.P1 = e.Location;
                                             myObj.P2 = e.Location;
 
@@ -161,18 +154,78 @@ namespace Bài_Tập_Paint
 
                                             lstObject.Add(myObj);
                                         }
+                                        else
+                                        {
+                                            if (flagStatus == FlagPaint.Square)
+                                            {
+                                                clsDrawObject myObj = new clsSquare();
+                                                myObj.P1 = e.Location;
+                                                myObj.P2 = e.Location;
+
+                                                myObj.MyPen = new Pen(colorDialog1.Color, float.Parse(txtDoDay.Text));
+                                                myObj.MyPen.DashStyle = dashStyle;
+
+                                                lstObject.Add(myObj);
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+                catch
+                {
+                    MessageBox.Show("Độ dày không hợp lệ.", "Thông báo");
+                    isPress = false;
+                }
+                #endregion
             }
-            catch
+            else
             {
-                MessageBox.Show("Độ dày không hợp lệ.", "Thông báo");
-                isPress = false;
+                if (canMove == false)
+                {
+                    posSelected = SelectedObject(lstObject, e);
+
+                    if (posSelected != -1)
+                    {
+                        //Update vị trí đã chọn
+                        mouseOld.X = e.X;
+                        mouseOld.Y = e.Y;
+
+                        canMove = true;
+                    }
+                    else
+                    {
+                        canMove = false;
+                    }
+                    // MessageBox.Show(SelectedObject(lstObject, e).ToString());
+                }
             }
+        }
+
+        private void pnlMain_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (canMove == true)
+                {
+                    lstObject.RemoveAt(posSelected);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Trả về vị trí thứ tự ảnh đang chọn.
+        /// </summary>
+        private int SelectedObject(List<clsDrawObject> lstObject, MouseEventArgs e)
+        {
+            for (int i = lstObject.Count - 1; i >= 0; i--)
+            {
+                if (lstObject[i].IsMouseOver(e))
+                    return i;
+            }
+            return -1;  //Không tìm thấy hình cần chọn.
         }
 
         private void pnlMain_MouseMove(object sender, MouseEventArgs e)
@@ -183,6 +236,22 @@ namespace Bài_Tập_Paint
                 {
                     this.lstObject[lstObject.Count - 1].P2 = e.Location;
                     pnlMain.Refresh();
+                }
+            }
+            else
+            {
+                if (canMove == true)
+                {
+                    Point offset = new Point();
+
+                    offset.X = e.X - mouseOld.X;
+                    offset.Y = e.Y - mouseOld.Y;
+
+                    mouseOld.X = e.X;
+                    mouseOld.Y = e.Y;
+
+                    lstObject[posSelected].AddPoint(offset.X, offset.Y);
+                    this.pnlMain.Refresh();
                 }
             }
         }
@@ -198,19 +267,20 @@ namespace Bài_Tập_Paint
                 }
             }
             isPress = false;
-            //flagStatus = FlagPaint.None;
+            canMove = false;
+            flagStatus = FlagPaint.None;
         }
 
         private void pnlMain_Paint(object sender, PaintEventArgs e)
         {
-            if (isPress == true)
+            if (isPress == true || canMove == true)
             {
                 foreach (var i in lstObject)
                 {
                     i.Draw(gp);
                 }
             }
-          
+
         }
 
         private void btnColorPen_Click(object sender, EventArgs e)
@@ -356,7 +426,28 @@ namespace Bài_Tập_Paint
 
         }
 
-        protected Rectangle CreateRectangle()
+        public void AddPoint(int x, int y)
+        {
+            this.p1.X += x;
+            this.p1.Y += y;
+
+            this.p2.X += x;
+            this.p2.Y += y;
+        }
+
+        public bool IsMouseOver(MouseEventArgs e)
+        {
+            Rectangle rect = CreateRectangle();
+
+            if (rect.X <= e.X && rect.X + rect.Width >= e.X &&
+                rect.Y <= e.Y && rect.Y + rect.Height >= e.Y)
+                return true;
+            else
+                return false;
+
+        }
+
+        public Rectangle CreateRectangle()
         {
             Point p = new Point();
             if (this.P1.X < this.P2.X && this.P1.Y < this.P2.Y)

@@ -75,6 +75,7 @@
             this.pnlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseDown);
             this.pnlMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseMove);
             this.pnlMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseUp);
+            this.pnlMain.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.pnlMain_PreviewKeyDown);
             // 
             // panel1
             // 
@@ -275,7 +276,7 @@
             this.btnKhungHCN.Name = "btnKhungHCN";
             this.btnKhungHCN.Size = new System.Drawing.Size(92, 85);
             this.btnKhungHCN.TabIndex = 25;
-            this.btnKhungHCN.Text = "Hình Chũ Nhật";
+            this.btnKhungHCN.Text = "Khung Hình Chũ Nhật";
             this.btnKhungHCN.UseVisualStyleBackColor = true;
             this.btnKhungHCN.Click += new System.EventHandler(this.btnKhungHCN_Click);
             // 
@@ -286,7 +287,7 @@
             this.btnHCN.Name = "btnHCN";
             this.btnHCN.Size = new System.Drawing.Size(92, 75);
             this.btnHCN.TabIndex = 26;
-            this.btnHCN.Text = "Khung Hình Chữ Nhật";
+            this.btnHCN.Text = "Hình Chữ Nhật";
             this.btnHCN.UseVisualStyleBackColor = true;
             this.btnHCN.Click += new System.EventHandler(this.btnHCN_Click);
             // 
@@ -297,7 +298,7 @@
             this.btnKhungEllipse.Name = "btnKhungEllipse";
             this.btnKhungEllipse.Size = new System.Drawing.Size(92, 75);
             this.btnKhungEllipse.TabIndex = 27;
-            this.btnKhungEllipse.Text = "Hình Ellipse";
+            this.btnKhungEllipse.Text = "Khung hình Ellipse";
             this.btnKhungEllipse.UseVisualStyleBackColor = true;
             this.btnKhungEllipse.Click += new System.EventHandler(this.btnKhungEllipse_Click);
             // 
@@ -308,7 +309,7 @@
             this.btnEllipse.Name = "btnEllipse";
             this.btnEllipse.Size = new System.Drawing.Size(92, 75);
             this.btnEllipse.TabIndex = 28;
-            this.btnEllipse.Text = "Khung hình Ellipse";
+            this.btnEllipse.Text = "Hình Ellipse";
             this.btnEllipse.UseVisualStyleBackColor = true;
             this.btnEllipse.Click += new System.EventHandler(this.btnEllipse_Click);
             // 
